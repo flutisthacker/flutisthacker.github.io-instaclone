@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+</head>
+
+<style>
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    /* display: flex;
+      align-items: center;
+      justify-content: center;
+      */
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    font-family: 'rubik', sans-serif;
+    background-color: #0c0f16;
+  }
+</style>
+<style>
+  img {
+    pointer-events: none;
+  }
+
+  .ig-story-container ul {
+    list-style: none;
+    user-select: none;
+    display: flex;
+    overflow-y: auto;
+
+    padding: 20px 0;
+  }
+
+  .ig-story-container ul li {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ig-story-container ul li:first-child {
+    padding-left: 20px;
+  }
+
+  .ig-story-container ul li:last-child {
+    padding-right: 20px;
+  }
+
+  .ig-story-container ul li .pp {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .75);
+    padding: 1px;
+    position: relative;
+  }
+
+  .ig-story-container ul li.has-story .pp {
+    padding: 2px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 755, #bc1888 100%);
+  }
+
+  .ig-story-container ul li .pp img {
+    padding: 4px;
+    background-color: currentColor;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ig-story-container ul li span {
+    color: rgba(255, 255, 255, .85);
+    font-weight: 300;
+    font-size: 14px;
+    text-align: center;
+    max-width: 85px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 5px;
+  }
+
+  /* https://www.instagram.com/p/B_2WVJYA-Ro/ */
+</style>
+
+<style>
+  #nav img {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+  }
+
+  #ul,
+  .li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #nav {
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  #ul,
+  #nav a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+
+  }
+
+  .li {
+    flex: 1;
+  }
+
+  ul .li a {
+    text-decoration: none;
+    color: #111;
+  }
+
+  ul .li a:hover {
+    color: aqua;
+  }
+
+  iframe {
+    scroll-behavior: smooth;
+    scrollbar-width: 0;
+    scrollbar-face-color: #16161d;
+  }
+
+  iframe:focus {
+    outline: none;
+  }
+
+  iframe[seamless] {
+    display: block;
+  }
+</style>
+
+<body>
+
+  <nav id="nav">
+    <ul id="ul">
+      <li class="li"><a href="" class="fa fa-home"></a></li>
+      <li class="li"><a href="" class="fa fa-search"></a></li>
+      <li class="li"><a href="" class="fa fa-compass"></a></li>
+      <li class="li"><a href="" class="fa fa-plus-square"></a></li>
+      <li class="li"><a href="" class="fa fa-heart"></a></li>
+      <li class="li"><a href="">
+          <img src="../cssPractice/cat1.jpg" alt="">
+        </a></li>
+    </ul>
+  </nav>
+
+  <div class="ig-story-container">
+    <ul>
+      <li>
+        <div class="pp"><img src="../cssPractice/cat1.jpg" alt=""></div>
+        <span class="user">Your Story</span>
+      </li>
+      <li class="has-story">
+        <div class="pp"><img src="../cssPractice/cat2.jpg" alt=""></div>
+        <span class="user">Tommy</span>
+      </li>
+      <li class="has-story">
+        <div class="pp"><img src="../cssPractice/cat3.jpg" alt=""></div>
+        <span class="user">Thomas</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- <iframe src="commentlist.html" width="100%" height="50%" frameborder="0"></iframe> -->
+  <iframe src="instagram3.html" width="100%" height="100%" frameborder="0"></iframe>
+
+
+</body>
+
+</html>

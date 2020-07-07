@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<style>
+  #container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #16161d;
+
+  }
+
+  .post {
+    margin: 30px 0;
+    box-shadow: 2px 2px 2px 5px gray;
+
+  }
+
+  .icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    height: 40px;
+  }
+
+  .icon {
+    text-align: center;
+    line-height: 20px;
+    width: 40px;
+    height: 40px;
+    color: white;
+    margin: 5px;
+  }
+
+  .icon:last-child {
+    justify-content: end;
+  }
+
+  #texts {
+    color: #fff;
+    padding-left: 5px;
+  }
+
+  #gallery {
+    width: 70%;
+    height: 70%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 2px;
+  }
+
+
+  .imgs {
+    width: 300px;
+    height: 300px;
+  }
+
+  #comment {
+    content: "Add a comment...";
+    height: 10%;
+    width: 640px;
+  }
+
+  #tag {
+    color: white;
+  }
+
+  #tagimg {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+</style>
+
+<body>
+  <div id="container">
+  </div>
+</body>
+<script src="instagram.js"></script>
+<script type="text/javascript" src="instaprofile.json">
+</script>
+<script>
+  var mydata = JSON.parse(instaprofile);
+  console.table(mydata, mydata[0].age, mydata[0].name)
+  var fpa = ["call_me_sherni",
+    'duyenn.hipp',
+    "hmuelay_27",
+    "kissme3ake",
+    "saeko_oda",
+    "surimipasolasido",
+    "riazizi",
+    "0cmspring",
+    "jennierubyjane",
+    "cjd_karen",
+    "kyia_aren_ao",
+    "sito_yamaguchi",
+    "gabriellakaputri",
+    "cia.grc",
+    "vampybitme",
+    "thepuffy33",
+    "cjd_karen",
+    "nguyenmupp",
+    "daaddaad_daad",
+    "12.10h",
+    "nhungpham.1797",
+    "alluarjunonline",
+    "_enigmatic_21",
+    "trtrom0715",
+    "itseunchae",
+    "bridgetnam_",
+    "ploy_wicked",
+    "pooyhing",
+    "rainyyy.___",
+    "shencorralofficial",
+    "lemlemjamir",
+    "supongrenla_longkumer_ao",
+    "its.babyca",
+    "lhoangphiyen",
+    "anurashi.deb.barma",
+    "_notyourtemptation_",
+    "vyxia",
+    "gepe_lina",
+    "pachuau_omomi",
+    "ancooooooo",
+    "iamemxi",
+    "hatrangg.68",
+    "rinjin.grg",
+    "douyinin",
+    "uniquesora",
+    "hye.won",
+    "catj1n9",
+    "baechu.hyun",
+    "ngamgai.official",
+    "ssunbiki",
+    "lifeofshritika",
+    "yuri_nikki",
+    "jeee622",
+    "_lenalemon",
+    "ruchika_lily",
+    "__priyanka_aribam__",
+    "urangelhasmalfunctioned",
+    "nagaimariaa",
+    "iamharrietsugarcookie",
+    "officialhungrylips",
+    "mimi_furu",
+    "pipi_laishram",
+    "kleo_laishram",
+    "_suune_",
+    "thaopau_",
+    "daani._.e",
+    "ulzzangweibo",
+    "silpa_pongshumbam",
+    "r0s8y_",
+    "__anjana.limbu__",
+    "alisha_rai_official_",
+    "ogatayurina",
+    "deepika_telem",
+    "tyennah",
+    "imti_111",
+    "zennyrt",
+    "olaphrodite",
+    "flora.bb1234",
+    "x.manya.x",
+    "shreyaghosal"
+  ];
+
+  var fpb = ['nextgencoder', 'theprogrammingexpert', 'thecodecrumbs', 'iamsrk',
+    'la_woo_sha',
+    'bazaarfactorynp',
+    'nerd_jfpb',
+    'web.designed',
+    "sofia9__official",
+    "stronger917",
+    'iamaarzoo',
+    'samanmaharjan',
+    "yelsa_mhrzn",
+    "routineofnepalbanda",
+    "kritikarldshah",
+    "purnika_shah",
+    "ishika__thapa",
+    'webdesign.tips', 'sparsh.codes',
+    "iamriebaa",
+    'aarajudangol',
+    "cake3ake",
+    "chu3ake",
+    "cake3art",
+    "alinagoal",
+    "sugar.baby96s",
+    "neha_lama_tamang",
+    "creepa_cres_ta",
+    "shreliizaa__",
+    "lum_ant_tea"
+
+  ]
+  const fetchProfiles = fpa.concat(fpb)
+  const fetchProfile = fetchProfiles[Math.floor(Math.random() * fetchProfiles.length)]
+  createGallery(fetchProfile);
+  console.log(fetchProfile);
+  // console.log(fetchlikes(fetchProfile));
+  // console.log(fetchcaptions(fetchProfile));
+</script>
+<script src="practice.js"></script>
+
+
+</html>

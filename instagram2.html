@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+</head>
+<style>
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    font-family: 'rubik', sans-serif;
+    background-color: #0c0f16;
+  }
+</style>
+
+<style>
+  :root {
+    --ratio: 2;
+    --size: 20px;
+  }
+
+  .ig-img-slider {
+    /* !-- $ratio: 2; */
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  span {
+    font-family: "rubik", sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    color: #fff;
+
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    background: rgba(0, 0, 0, .5);
+    border: 1px solid rgba(255, 255, 255, .85);
+
+    backdrop-filter: blur(2px);
+    border-radius: 24px;
+    padding: 6px 9px;
+
+    user-select: none;
+    animation: fade 1.5s ease-in-out;
+    opacity: 0;
+  }
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+
+    5% {
+      opacity: 1;
+    }
+
+    75% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .ig-content {
+    display: flex;
+    height: 1350px /var(--ratio);
+    width: 1080px /var(--ratio);
+
+    overflow: hidden;
+  }
+
+  .ig-content img,
+  .ig-content video {
+    width: 1000px / var(--ratio);
+    object-fit: cover;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .ig-slider {
+    background-color: rgba(0, 0, 0, .25);
+    border-top: 1px solid rgba(255, 255, 255, .25);
+  }
+
+  .ig-slider ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 30px;
+  }
+
+  .ig-slider ul li {
+    width: 14px / var(--ratio);
+    height: 14px / var(--ratio);
+    border-radius: 50%;
+    margin: 0 2px;
+    background: rgba(168, 168, 168, .35);
+    transition: background .25s ease-in-out;
+  }
+
+  .ig-slider ul li.current {
+    background: rgb(0, 140, 240);
+  }
+
+  .ig-slider ul li:hover {
+    cursor: pointer;
+    background: rgba(0, 149, 246, .75);
+  }
+
+  .controls {
+    position: absolute;
+    top: 1350px/ var(--ratio) - var(--size) - 1350px /var(--ratio) /2;
+    display: flex;
+    justify-content: space-between;
+    padding: var(--size) /2;
+    width: 100%;
+  }
+
+  .controls div {
+    width: var(--size);
+    height: var(--size);
+    background: rgba(255, 255, 255, .85);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--size)/2;
+    color: #121212;
+    transition-property: opacity visiblity;
+    transition-duration: .5s;
+    transition-timing-function: ease-in-out;
+  }
+
+  .controls div:hover {
+    cursor: pointer
+  }
+</style>
+
+<body>
+  <div class="ig-img-slider">
+    <div class="ig-content">
+      <img src="../cssPractice/cat1.jpg" alt="">
+      <img src="../cssPractice/cat2.jpg" alt="">
+    </div>
+  </div>
+
+</body>
+<script>
+  document.querySelectorAll('.ig-img-slider').forEach(element => {
+    const media = [element.children[0].children];
+    element.appendChild(createControls(media, element));
+    element.appendChild(createnavigation(media, element));
+
+
+    const count = document.createElement('span');
+    element.appendChild(count);
+    slide(0, media.length, element)
+  });
+
+  function createControls({
+    length
+  }, element) {
+    const controls = document.createElement('div');
+    controls.classList.add('controls');
+
+    function createArrow(name, add) {
+      const arrow = document.createElement('div');
+      const icon = document.createElement('i');
+      icon.classList.add('fas', `fa-arrow-${name}`);
+      arrow.appendChild(icon);
+      arrow.addEventListener('click', () => {
+        let index = parseInt(location.hash.replace('#', ''));
+        slide((add ? index + 1 : index - 1), {
+          length
+        }, element)
+      });
+      return arrow;
+    }
+
+    controls.appendChild(createArrow('left', false));
+    controls.appendChild(createArrow('right', true));
+    return controls;
+  }
+
+  function createnavigation(media, element) {
+    const container = document.createElement('div');
+    container.classList.add('ig-slider');
+    const ul = document.createElement('ul');
+    container.appendChild(ul);
+
+    media.forEach((item, index) => {
+      item.id = index;
+      const li = document.createElement('li');
+      index === 0 && li.classList.add('current');
+      li.addEventListener('click', () => slide(index, media.length, element));
+      ul.appendChild(li);
+    });
+
+    return container;
+  }
+
+  function slide(number, length, element) {
+    if (number >= length || number < 0)
+      return;
+
+    location.href = `#${ number }`;
+    select(element.children[2].children[0].children[number]);
+
+    const count = document.createElement('span');
+    count.textContent = `${number+1} / ${length}`;
+    element.replaceChild(count, element.children[3]);
+
+    const currentElement = element.children[0].children[number];
+    if (currentElement.tagname === "VIDEO") {
+      currentElement.loop = true;
+      currentElement.play()
+    }
+    element.children[1].children[0].style.visibility = 'visible';
+    element.children[1].children[1].style.visibility = 'visible';
+    element.children[1].children[0].style.opacity = '1';
+    element.children[1].children[1].style.opacity = '1';
+
+    if (number > 0 && number < length - 1) return;
+    const index = (number === 0 ? 0 : 1);
+    element.children[1].children[index].style.visibility = 'hidden';
+    element.children[1].children[index].style.opacity = '0';
+  }
+
+  function select(element) {
+    var items = [element.parentNode.children[0]];
+    for (var i = 0; i < items.length; i++) {
+
+      items.forEach(item => item.classList.remove('current'));
+      element.classList.add('current')
+    }
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/a07605399.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fontawesome-iconpicker/3.2.0/js/fontawesome-iconpicker.min.js">
+</script>
+
+</html>

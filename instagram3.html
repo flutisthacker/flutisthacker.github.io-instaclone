@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<style>
+  #container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #16161d;
+  }
+
+  .post {
+    margin: 30px 0;
+    box-shadow: 2px 2px 2px 5px gray;
+
+  }
+
+  .icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    height: 40px;
+  }
+
+  .icon {
+    text-align: center;
+    line-height: 20px;
+    width: 40px;
+    height: 40px;
+    color: white;
+    margin: 5px;
+  }
+
+  .icon:last-child {
+    justify-content: end;
+  }
+
+  #texts {
+    color: #fff;
+    padding-left: 5px;
+  }
+
+  #gallery {
+    width: 50%;
+    height: 50%;
+  }
+
+  #comment {
+    content: "Add a comment...";
+    height: 10%;
+    width: 640px;
+  }
+
+  #tag {
+    color: white;
+  }
+
+  #tagimg {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+</style>
+
+<body>
+  <div id="container">
+
+  </div>
+</body>
+<script>
+  async function fetchlatestpost(profileId) {
+    const url = `https://www.instagram.com/${profileId}/?__a=1`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    const latest = data.graphql.user.edge_owner_to_timeline_media.edges;
+    //access the data from the latest 12 posts
+    const thumbnails = [];
+
+    latest.forEach(element => thumbnails.push(element.node.display_url));
+    return thumbnails;
+
+    //loop through the latest 12 post to get the image link
+  }
+  async function fetchlikes(profileId) {
+    const url = `https://www.instagram.com/${profileId}/?__a=1`;
+    const response = await fetch(url);
+    const data = await response.json();
+    // element.node.edge_liked_by.count
+    // element.node.edge_media_to_comment
+    // element.node.taken_at_timestamp
+// video_view_count
+    // element.node.thumbnail_resources[]
+    // element.node.display_url
+    // latest[0].node.edge_media_to_caption.edges[0].node.text
+    // element.node.accessibility_caption
+    // const latest = data.graphql.user.edge_felix_video_timeline.edges;
+    // data.graphql.user.profile_pic_url_hd
+
+    const latest = data.graphql.user.edge_owner_to_timeline_media.edges;
+    //access the data from the latest 12 posts
+    const count = [];
+    latest.forEach(element => count.push(element.node.edge_liked_by.count));
+    return count;
+
+    //loop through the latest 12 post to get the image link
+  }
+  async function fetchcaptions(profileId) {
+    const url = `https://www.instagram.com/${profileId}/?__a=1`;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    const latest = data.graphql.user.edge_owner_to_timeline_media.edges;
+    //access the data from the latest 12 posts
+    const caption = [];
+    latest.forEach(element => caption.push(element.node.accessibility_caption));
+    return caption;
+
+    //loop through the latest 12 post to get the image link
+  }
+  async function fetchdp(profileId) {
+    const url = `https://www.instagram.com/${profileId}/?__a=1`;
+    const response = await fetch(url);
+    const data = await response.json();
+    const latest = data.graphql.user.profile_pic_url_hd;
+    return latest;
+    //loop through the latest 12 post to get the image link
+  }
+
+  async function createGallery(profileId) {
+    const thumbnails = await fetchlatestpost(profileId);
+    const container = document.createElement('div');
+    const mydp = await fetchdp(fetchProfile);
+    container.id = 'gallery';
+    thumbnails.forEach(thumbnail => {
+      const tag = document.createElement('div');
+      const tagimg = document.createElement('img');
+      const tagname = document.createElement('p');
+      const img = document.createElement('img');
+      const post = document.createElement('div');
+      const icons = document.createElement('div');
+      const icon1 = document.createElement('i');
+      const icon2 = document.createElement('i');
+      const icon3 = document.createElement('i');
+      const icon4 = document.createElement('i');
+      const texts = document.createElement('div');
+      const nolikes = document.createElement('h4');
+      const desc = document.createElement('h4');
+      const comments = document.createElement('h5');
+      const times = document.createElement('h6');
+      const mycomments = document.createElement('div');
+      tagimg.src = mydp;
+      tagimg.id = "tagimg"
+      tagname.id = "tag"
+      tagname.innerHTML = profileId;
+      tag.appendChild(tagimg)
+      tag.appendChild(tagname)
+
+      post.className = 'post';
+      icons.className = 'icons';
+      icon1.className = 'fa fa-heart icon';
+      icon2.className = 'fa fa-comment icon';
+      icon3.className = 'fa fa-plane icon';
+      icon4.className = 'fa fa-tag pull-right icon';
+      icons.appendChild(icon1)
+      icons.appendChild(icon2)
+      icons.appendChild(icon3)
+      icons.appendChild(icon4)
+
+      texts.id = "texts";
+      nolikes.id = "nolikes";
+      desc.id = "desc";
+      nolikes.innerText = Math.floor(Math.random() * 99) + " likes";
+      comments.innerText = "View all " + Math.floor(Math.random() * 99) + " comments";
+      desc.innerText = profileId;
+      times.innerText = Math.floor(Math.random() * 59) + " minutes ago";
+      comments.id = "comments";
+      mycomments.id = "mycomments";
+      mycomments.type = "text";
+      times.id = "times";
+      texts.appendChild(nolikes)
+      texts.appendChild(desc)
+      texts.appendChild(comments)
+      texts.appendChild(times)
+
+      const cmtinput = document.createElement('input');
+      cmtinput.className = "comment";
+      mycomments.appendChild(cmtinput)
+
+      img.src = thumbnail;
+      post.appendChild(tag)
+      post.appendChild(img);
+      post.appendChild(icons)
+      post.appendChild(comments)
+      post.appendChild(texts)
+      post.appendChild(mycomments)
+
+      container.appendChild(post)
+    });
+    document.getElementById('container').appendChild(container);
+  }
+  const fetchProfiles = ['nextgencoder', 'theprogrammingexpert', 'thecodecrumbs', 'iamsrk',
+    'la_woo_sha',
+    'bazaarfactorynp',
+    'duyenn.hipp',
+    'nerd_jfpb',
+    'web.designed',
+    'webdesign.tips', 'sparsh.codes', "call_me_sherni",
+    "hmuelay_27",
+    "sofia9__official",
+    "cake3ake",
+    "stronger917",
+    "sugar.baby96s",
+    'iamaarzoo',
+    "iamriebaa",
+    'samanmaharjan',
+    'aarajudangol',
+    "lum_ant_tea",
+    "yelsa_mhrzn",
+    "alinagoal",
+    "shreliizaa__",
+    "neha_lama_tamang",
+    "creepa_cres_ta",
+    "0cmspring"
+  ];
+
+  const fetchProfile = fetchProfiles[Math.floor(Math.random() * fetchProfiles.length)]
+  createGallery(fetchProfile);
+  console.log(fetchProfile);
+  // console.log(fetchlikes(fetchProfile));
+  // console.log(fetchcaptions(fetchProfile));
+</script>
+
+</html>
