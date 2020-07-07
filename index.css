@@ -1,0 +1,362 @@
+
+  * {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+  }
+
+  @media screen and (max-width:480px) {
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      min-height: 100vh;
+      background: #2c2b33;
+    }
+
+    .instaprofile {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-direction: column;
+      height: 100vh;
+      width: 100%;
+      background: #2c2b33;
+    }
+
+
+
+    .description {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: #ff4754;
+      text-align: center;
+    }
+
+    .search {
+      width: 100%;
+      height: 40px;
+      position: absolute;
+      top: 1%;
+      text-align: right;
+    }
+
+    .search i {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      z-index: 3;
+      font-size: 1.5rem;
+      padding-right: 50px;
+      line-height: 40px;
+    }
+
+    #instaid::-webkit-input-placeholder {
+      text-shadow: 3px 3px 1px gray;
+      letter-spacing: 3px;
+      color: #ff635e;
+    }
+
+    #instaid {
+      width: 60%;
+      position: absolute;
+      height: 40px;
+      right: 30px;
+      text-align: center;
+      font-size: .9rem;
+      color: #ff4944;
+      background: transparent;
+      box-shadow: none;
+      caret-color: black;
+    }
+
+    #instaid:hover {
+      box-shadow: 4px 4px 4px 4px #ff4944;
+    }
+
+    #instaid:focus {
+      box-shadow: 4px 4px 4px 4px #ff5711;
+      border: none;
+    }
+
+    .profile-div {
+      border-radius: 50%;
+      border-color: #ff4944;
+      overflow: hidden;
+      width: 300px;
+      height: 300px;
+    }
+
+    .profile-div img {
+      width: inherit;
+      height: inherit;
+
+    }
+
+
+    #username {
+      font-size: 1.5rem;
+      font-weight: 600;
+      user-select: none;
+      position: relative;
+      text-transform: uppercase;
+    }
+
+    #username::before {
+      content: "Full Name";
+      text-align: left;
+      position: absolute;
+      writing-mode: horizontal-lr;
+      bottom: 30px;
+      right: -60px;
+      margin: 3px;
+      font-size: 2rem;
+      opacity: 0;
+      transition: opacity 2s ease-out;
+    }
+
+    #username:hover::before {
+      content: attr(data-content);
+      opacity: 1;
+    }
+
+    #followdetail {
+      color: #ff4760;
+      font-size: 1rem;
+      text-align: center;
+      font-weight: 900;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100vh;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      background: #16161d;
+
+    }
+
+    #gallery {
+      width: 70%;
+      height: 70%;
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+
+    .imgs {
+      width: 300px;
+      height: 300px;
+    }
+
+    .select {
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+    }
+
+    #instaname2,
+    #instaname1 {
+      width: 55%;
+      height: 30px;
+      left: 20px;
+      margin-left: 5px;
+      text-align: center;
+      font-size: .8rem;
+      color: #ff4944;
+      background: transparent;
+
+      caret-color: black;
+    }
+  }
+
+
+  @media screen and (min-width: 1024px) {
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-direction: column;
+      min-height: 100vh;
+      background: #2c2b33;
+    }
+
+    .instaprofile {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-direction: row;
+      height: 100vh;
+      width: 100%;
+      background: #2c2b33;
+    }
+
+
+    .description {
+      display: flex;
+      align-items: left;
+      justify-content: center;
+      flex-direction: column;
+      color: #ff4754;
+
+    }
+
+    .search {
+      width: 100%;
+      height: 40px;
+      position: absolute;
+      top: 5%;
+      text-align: right;
+    }
+
+    .search i {
+      width: 40px;
+      height: 40px;
+      position: relative;
+      z-index: 3;
+      font-size: 1.5rem;
+      padding-right: 50px;
+      line-height: 40px;
+    }
+
+    #instaid::-webkit-input-placeholder {
+      text-shadow: 3px 3px 3px black;
+      letter-spacing: 3px;
+      color: #ff635e;
+    }
+
+    #instaid {
+      width: 80%;
+      position: absolute;
+      height: 40px;
+      right: 20px;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #ff4944;
+      background: transparent;
+      box-shadow: none;
+      caret-color: black;
+    }
+
+    #instaid:hover {
+      box-shadow: 4px 4px 4px 4px #ff4944;
+    }
+
+    #instaid:focus {
+      box-shadow: 4px 4px 4px 4px #ff5711;
+      border: none;
+    }
+
+    .profile-div {
+      border-radius: 50%;
+      border-color: #ff4944;
+      padding: 3px;
+      overflow: hidden;
+      width: 300px;
+      height: 300px;
+      margin: 5px
+    }
+
+
+
+    #username {
+      font-size: 3rem;
+      font-weight: 600;
+      user-select: none;
+      position: relative;
+    }
+
+    #username::before {
+      content: "Full Name";
+      text-align: left;
+      position: absolute;
+      writing-mode: horizontal-lr;
+      bottom: 30px;
+      right: -60px;
+      margin: 3px;
+      font-size: 2rem;
+      opacity: 0;
+      transition: opacity 2s ease-out;
+    }
+
+    #username:hover::before {
+      content: attr(data-content);
+      opacity: 1;
+    }
+
+    #followdetail {
+      color: #ff4760;
+      font-size: 2rem;
+      text-align: center;
+      font-weight: 900;
+      user-select: none;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100vh;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      background: #16161d;
+
+    }
+
+    #gallery {
+      width: 70%;
+      height: 70%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      grid-gap: 2px;
+    }
+
+
+    .imgs {
+      width: 300px;
+      height: 300px;
+    }
+
+    .select {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      opacity: 0;
+    }
+
+    #instaname2,
+    #instaname1 {
+      width: 25%;
+      height: 30px;
+      left: 20px;
+      margin-left: 5px;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #ff4944;
+      background: transparent;
+
+      caret-color: black;
+    }
+  }
