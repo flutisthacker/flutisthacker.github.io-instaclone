@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>INstaclone</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
@@ -24,7 +24,7 @@
     body {
       display: flex;
       align-items: center;
-      justify-content: space-evenly;
+      justify-content: space-between;
       flex-direction: column;
       min-height: 100vh;
       background: #2c2b33;
@@ -44,7 +44,7 @@
 
     .description {
       display: flex;
-      align-items: left;
+      align-items: center;
       justify-content: center;
       flex-direction: column;
       color: #ff4754;
@@ -55,7 +55,7 @@
       width: 100%;
       height: 40px;
       position: absolute;
-      top: 5%;
+      top: 1%;
       text-align: right;
     }
 
@@ -143,6 +143,8 @@
       text-align: center;
       font-weight: 900;
       user-select: none;
+      display: flex;
+      flex-direction: column;
     }
 
     iframe {
@@ -175,10 +177,11 @@
     }
 
     .select {
+
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 100%
+      opacity: 0;
     }
 
     #instaname2,
@@ -351,6 +354,7 @@
       position: absolute;
       bottom: 0;
       left: 0;
+      opacity: 0;
     }
 
     #instaname2,
@@ -426,6 +430,9 @@
   }
   instaid.addEventListener("keyup", (e) => {
     if (e.keyCode == 13) {
+      if (instaid.value == "flutisthacker") {
+        document.querySelector('.select').style = "opacity:1;"
+      }
       setFlowers(instaid.value);
       username.textContent = instaid.value
     }
@@ -580,21 +587,6 @@
   });
 </script>
 
-<!-- hmuelay_27
-iamaarzoo
-lum_ant_tea
-yelsa_mhrzn
-alinagoal
-samanmaharjan
-duyenn.hipp
-sofia9__official
-aarajudangol
-stronger917
-neha_lama_tamang
-call_me_sherni
-creepa_cres_ta
-sugar.baby96s
-0cmspring
--->
+
 
 </html>
