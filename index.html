@@ -70,18 +70,18 @@
     }
 
     #instaid::-webkit-input-placeholder {
-      text-shadow: 3px 3px 3px black;
+      text-shadow: 3px 3px 1px gray;
       letter-spacing: 3px;
       color: #ff635e;
     }
 
     #instaid {
-      width: 80%;
+      width: 60%;
       position: absolute;
       height: 40px;
-      right: 20px;
+      right: 30px;
       text-align: center;
-      font-size: 1.5rem;
+      font-size: .9rem;
       color: #ff4944;
       background: transparent;
       box-shadow: none;
@@ -113,10 +113,11 @@
 
 
     #username {
-      font-size: 3rem;
+      font-size: 1.5rem;
       font-weight: 600;
       user-select: none;
       position: relative;
+      text-transform: uppercase;
     }
 
     #username::before {
@@ -139,7 +140,7 @@
 
     #followdetail {
       color: #ff4760;
-      font-size: 2rem;
+      font-size: 1rem;
       text-align: center;
       font-weight: 900;
       user-select: none;
@@ -179,19 +180,21 @@
     .select {
 
       position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
-      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      /* opacity: 0; */
     }
 
     #instaname2,
     #instaname1 {
-      width: 25%;
+      width: 55%;
       height: 30px;
       left: 20px;
       margin-left: 5px;
       text-align: center;
-      font-size: 1.5rem;
+      font-size: .8rem;
       color: #ff4944;
       background: transparent;
 
