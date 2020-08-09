@@ -10,8 +10,10 @@
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="index.css">
-</head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
+</head>
 
 <body>
   <div class="instaprofile">
@@ -24,13 +26,20 @@
         <option value="none">Choose...</option>
       </select>
     </div>
+    <div id="menu" class="menu">
+      <ul class="menu-ul">
+      </ul>
+    </div>
     <div class="search">
       <i class="fa fa-search text-light">
       </i>
-      <input type="text" name="instaname" id="instaid" placeholder="Input id ...">
+      <div class="toggle thide" id="toggle">
+        <i class="fa fa-folder-open"></i>
+      </div>
+      <input type="text" inputmode="text" name="instaname" id="instaid" placeholder="Input id ...">
     </div>
     <div class="profile-div">
-      <img src="../cssPractice/bg.jpeg" alt="my picture">
+      <img src="../../dog1.jpg" alt="my picture">
     </div>
     <div class="description">
 
@@ -46,245 +55,10 @@
   <div id="container"> </div>
   <!-- <iframe src="instavideo.html" frameborder="0"></iframe> -->
 </body>
-<script>
-  const followers = document.getElementById('followers')
-  const follows = document.getElementById('follows')
-  const image = document.querySelector('img')
-  const instaid = document.querySelector('#instaid')
-  const biography = document.querySelector('#biography')
-  const username = document.querySelector('#username')
-  const posts = document.querySelector('#posts')
-
-  async function setFlowers(profileId) {
-    followers.textContent = await getFollowers(profileId);
-    follows.textContent = await getFollows(profileId);
-    image.src = await getProfilePicture(profileId);
-    biography.innerHTML = await getBio(profileId) + "<br/>" +
-      `<a href="${await getWebsite(profileId) || "none"}">#Link1</a>` +
-      "<br/>" + `<a href="${await getWebsite2(profileId) || "none"}">#Link2</a>`
-    posts.innerHTML = await getPostCount(profileId)
-    username.dataset.content = await getFullName(profileId)
-    createGallery(profileId)
-    appendGallery(profileId)
-    appendGalliers(profileId)
-  }
-  instaid.addEventListener("keyup", (e) => {
-    if (e.keyCode == 13) {
-      if (instaid.value == "flutisthacker" || instaid.value == "samaharjan") {
-        document.querySelector('.select').style = "opacity:1;"
-      }
-      setFlowers(instaid.value);
-      username.textContent = instaid.value
-    }
-  });
-  // setInterval(() => setFlowers('samanmaharjan'), 1000)
-</script>
-
-<script src="instagram.js">
-</script>
 <script src="names.json">
 </script>
-<script>
-  var mydata = JSON.parse(names);
-  console.table(mydata);
-
-  const instaname2 = document.querySelector('#instaname2');
-  /*   var fpa = ["call_me_sherni",
-      'duyenn.hipp',
-      "hmuelay_27",
-      "kissme3ake",
-      "saeko_oda",
-      "surimipasolasido",
-      "riazizi",
-      "0cmspring",
-      "jennierubyjane",
-      "cjd_karen",
-      "kyia_aren_ao",
-      "sito_yamaguchi",
-      "gabriellakaputri",
-      "cia.grc",
-      "vampybitme",
-      "thepuffy33",
-      "cjd_karen",
-      "nguyenmupp",
-      "daaddaad_daad",
-      "12.10h",
-      "nhungpham.1797",
-      "alluarjunonline",
-      "_enigmatic_21",
-      "trtrom0715",
-      "itseunchae",
-      "bridgetnam_",
-      "ploy_wicked",
-      "pooyhing",
-      "rainyyy.___",
-      "shencorralofficial",
-      "lemlemjamir",
-      "supongrenla_longkumer_ao",
-      "its.babyca",
-      "lhoangphiyen",
-      "anurashi.deb.barma",
-      "_notyourtemptation_",
-      "vyxia",
-      "gepe_lina",
-      "pachuau_omomi",
-      "ancooooooo",
-      "iamemxi",
-      "hatrangg.68",
-      "rinjin.grg",
-      "douyinin",
-      "uniquesora",
-      "hye.won",
-      "catj1n9",
-      "baechu.hyun",
-      "ngamgai.official",
-      "ssunbiki",
-      "lifeofshritika",
-      "yuri_nikki",
-      "jeee622",
-      "_lenalemon",
-      "ruchika_lily",
-      "__priyanka_aribam__",
-      "urangelhasmalfunctioned",
-      "nagaimariaa",
-      "iamharrietsugarcookie",
-      "officialhungrylips",
-      "mimi_furu",
-      "pipi_laishram",
-      "kleo_laishram",
-      "_suune_",
-      "thaopau_",
-      "daani._.e",
-      "ulzzangweibo",
-      "silpa_pongshumbam",
-      "r0s8y_",
-      "__anjana.limbu__",
-      "alisha_rai_official_",
-      "ogatayurina",
-      "deepika_telem",
-      "tyennah",
-      "imti_111",
-      "zennyrt",
-      "olaphrodite",
-      "flora.bb1234",
-      "x.manya.x",
-      "nruburn",
-      "andyvu167",
-      "js.kim.72",
-      "babs_nie",
-      "_likil_zhimo_",
-      "danyancatsq",
-      "nance.do",
-      "moon.fit_",
-      "_nine8",
-      "mm_d.i",
-      "nicegirlinyourarea",
-      "vesper___",
-      "rashmika_mandanna",
-      "mikanaka9999",
-      "shreyaghoshal"
-    ];
-
-    var fpb = ['nextgencoder', 'theprogrammingexpert', 'thecodecrumbs', 'iamsrk',
-      'la_woo_sha',
-      'bazaarfactorynp',
-      'nerd_jfpb',
-      'web.designed',
-      "sofia9__official",
-      "stronger917",
-      'iamaarzoo',
-      'samanmaharjan',
-      "yelsa_mhrzn",
-      "routineofnepalbanda",
-      "kritikarldshah",
-      "purnika_shah",
-      "ishika__thapa",
-      'webdesign.tips', 'sparsh.codes',
-      "iamriebaa",
-      'aarajudangol',
-      "cake3ake",
-      "chu3ake",
-      "cake3art",
-      "alinagoal",
-      "sugar.baby96s",
-      "neha_lama_tamang",
-      "creepa_cres_ta",
-      "shreliizaa__",
-      "shreyy15",
-      "riha_baidhya",
-      "ludixxnaa",
-      "laseena_gharti_magar",
-      "srejjii",
-      "sudesha.adhikari",
-      "shhbunny",
-      "solcode.solutions",
-      "lum_ant_tea"
-    ]
-    var fpc = [
-      "dolma_jirel",
-      "js.kim_72",
-      "babs_nie",
-      "_liki_zhimo_",
-      "emewongcha",
-      "parkssunwoo.me",
-      "lee__bora",
-      "k_jenny_k",
-      "baifern.kunthada",
-      "fairysta",
-      "h.yojeong",
-      "cessygarsya",
-      "0.jin_615",
-      "sujin29_",
-      "zzyuridayo",
-      "foxie___",
-      "mrj.brgz",
-      "naffacakes101",
-      "_ippu.song_",
-      "biene.kb",
-      "le.bich.tram",
-      "yrs666official",
-      "lysia_lee",
-      "zualy_",
-      "kwan.lc",
-      "kkae_jupiter",
-
-      "parewaznitradi",
-    ]
-   */
-  window.onunload = function () {
-    alert("Bye now!");
-  }
-  var fpa = mydata["lips"].split(" ");
-  //   mydata["hmm"].split(" ")
-  var fpb = mydata["normal"].split(" ")
-  fpa.sort()
-  fpb.sort()
-  fpb.forEach(element => {
-    var option = document.createElement("option");
-    option.value = element;
-    option.innerHTML = element;
-    instaname2.appendChild(option)
-  })
-
-  instaname2.addEventListener("change", () => {
-    setFlowers(instaname2.value);
-    username.textContent = instaname2.value
-
-  });
-  fpa.forEach(element => {
-    var option = document.createElement("option");
-    option.value = element;
-    option.innerHTML = element;
-    instaname1.appendChild(option)
-  })
-
-  instaname1.addEventListener("change", () => {
-    setFlowers(instaname1.value);
-    username.textContent = instaname1.value
-
-  });
+<script src="toggle.js"></script>
+<script src="instagram.js">
 </script>
-
-
 
 </html>
