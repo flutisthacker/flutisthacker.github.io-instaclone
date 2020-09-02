@@ -69,8 +69,8 @@ const posts = document.querySelector('#posts')
 var GetData;
 async function setFlowers(profileId) {
   GetData = await getData(profileId)
+  document.querySelector("#visitmyinsta").href = `https://www.instagram.com/${profileId}`
   followers.textContent = await getFollowers(profileId, GetData);
-  debugger
   follows.textContent = await getFollows(profileId, GetData);
   image.src = await getProfilePicture(profileId, GetData);
   biography.innerHTML = await getBio(profileId, GetData) + "<br/>" +
