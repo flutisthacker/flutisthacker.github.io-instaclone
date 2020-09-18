@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>insta save</title>
+  <link rel="stylesheet" href="../resources/perfect.css">
+</head>
+<style>
+  #insta #instaVideo,
+  #insta #instaDownload {
+    padding: 10px 20px;
+    border-radius: 15px;
+    outline: none;
+    margin: 2px;
+  }
+
+  #insta #instaVideo:focus,
+  #insta #instaDownload:focus {
+    border: #ff4754;
+  }
+</style>
+
+<body>
+  <section id="insta">
+    <input type="text" id="instaDownload" placeholder="public/private download">
+    <i class="fa fab-instagram"></i>
+
+    <input type="text" id="instaVideo" placeholder="video download">
+  </section>
+
+
+  <script>
+    //instadownload
+    document.querySelector("#instaDownload").addEventListener("keypress", (e) => {
+      if (e.keyCode == 13) {
+        getpic(document.querySelector("#instaDownload").value);
+        document.querySelector("#instaDownload").value = ""
+      }
+    })
+
+    document.querySelector("#instaVideo").addEventListener("keypress", (e) => {
+      if (e.keyCode == 13) {
+        getVid(document.querySelector("#instaVideo").value);
+      }
+    })
+
+    async function getVid(link) {
+      if (link.includes(",")) {
+        let vale = link.split(",");
+        forceDownload(vale[0], vale[1])
+      } else {
+        const atsni = await getJSON(link)
+        const linkfor = atsni.graphql.shortcode_media.video_url
+        const name = await getName(atsni)
+        forceDownload(linkfor, name)
+      }
+    }
+
+
+
+    async function getpic(link) {
+      if (link.includes(",")) {
+        let vale = link.split(",");
+        forceDownload(vale[0], vale[1])
+      } else {
+        atsni = await getJSON(link)
+        // aaaa.graphql.shortcode_media.video_url
+        atsnis = atsni.graphql.shortcode_media.display_resources.length
+        // console.log(atsnis, atsni)
+        linkfor = atsni.graphql.shortcode_media.display_resources[atsnis - 1].src
+        alink = document.createElement("a");
+        alink.href = await toDataURL(linkfor);
+        alink.download = "linkfor.jpg";
+        alink.textContent = "DOWNLOAD"
+        document.querySelector("#insta").appendChild(alink);
+        // alink.click();
+        document.querySelector("#insta").removeChild(alink);
+        let name = await getName(atsni)
+        name = name.replaceAll(".", "_");
+        console.log(name)
+        forceDownload(linkfor, name)
+      }
+    }
+    async function getName(link) {
+      const name = link.graphql.shortcode_media.owner.username
+      return name;
+    }
+    async function toDataURL(url) {
+      return fetch(url).then((response) => {
+        return response.blob();
+      }).then(blob => {
+        return URL.createObjectURL(blob);
+      });
+    }
+
+    function forceDownload(url, fileName) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", url, true);
+      xhr.responseType = "blob";
+      xhr.onload = function () {
+        var urlCreator = window.URL || window.webkitURL;
+        var imageUrl = urlCreator.createObjectURL(this.response);
+        var tag = document.createElement('a');
+        tag.href = imageUrl;
+        tag.download = fileName;
+        document.body.appendChild(tag);
+        tag.click();
+        document.body.removeChild(tag);
+      }
+      xhr.send();
+    }
+    async function getJSON(link) {
+      link = link + "?__a=1";
+      const response = await fetch(link);
+      const data = await response.json();
+      if (data != null) {
+        return data
+      } else {
+        return link;
+      }
+    }
+  </script>
+
+</body>
+
+</html>
