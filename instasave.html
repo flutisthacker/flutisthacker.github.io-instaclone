@@ -67,21 +67,34 @@
       } else {
         atsni = await getJSON(link)
         // aaaa.graphql.shortcode_media.video_url
-        atsnis = atsni.graphql.shortcode_media.display_resources.length
-        // console.log(atsnis, atsni)
-        linkfor = atsni.graphql.shortcode_media.display_resources[atsnis - 1].src
-        alink = document.createElement("a");
-        alink.href = await toDataURL(linkfor);
-        alink.download = "linkfor.jpg";
-        alink.textContent = "DOWNLOAD"
-        document.querySelector("#insta").appendChild(alink);
-        // alink.click();
-        document.querySelector("#insta").removeChild(alink);
-        let name = await getName(atsni)
-        name = name.replaceAll(".", "_");
-        console.log(name)
-        forceDownload(linkfor, name)
+        if (atsni.graphql.shortcode_media.edge_sidecar_to_children != null) {
+          aatsni = atsni.graphql.shortcode_media.edge_sidecar_to_children.edges
+          aatsni.forEach(aatsn => {
+            let atsnis = aatsn.node.display_resources.length
+            let linkfor = aatsn.node.display_resources[atsnis - 1].src
+            instaPicDown(linkfor, atsni)
+          })
+        } else {
+          let atsnis = atsni.graphql.shortcode_media.display_resources.length
+          // console.log(atsnis, atsni)
+          let linkfor = atsni.graphql.shortcode_media.display_resources[atsnis - 1].src
+          alink = document.createElement("a");
+          alink.href = await toDataURL(linkfor);
+          alink.download = "linkfor.jpg";
+          alink.textContent = "DOWNLOAD"
+          document.querySelector("#insta").appendChild(alink);
+          // alink.click();
+          document.querySelector("#insta").removeChild(alink);
+          instaPicDown(linkfor, atsni)
+        }
       }
+    }
+
+    async function instaPicDown(link, atsni) {
+      let name = await getName(atsni)
+      name = name.replaceAll(".", "_");
+      console.log(name)
+      forceDownload(link, name)
     }
     async function getName(link) {
       const name = link.graphql.shortcode_media.owner.username
