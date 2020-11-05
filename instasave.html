@@ -28,6 +28,7 @@
     <i class="fa fab-instagram"></i>
 
     <input type="text" id="instaVideo" placeholder="video download">
+    <input type="text" name="" id="privatemaker">
   </section>
 
 
@@ -45,7 +46,18 @@
         getVid(document.querySelector("#instaVideo").value);
       }
     })
+    document.querySelector("#privatemaker").addEventListener("keypress", (e) => {
+      if (e.keyCode == 13) {
+        viewjson(document.querySelector("#privatemaker").value);
+        document.querySelector("#privatemaker").value = "";
+      }
+    })
 
+    function viewjson(val) {
+      link = val + "?__a=1";
+      var win = window.open(link, '_blank');
+      win.focus();
+    }
     async function getVid(link) {
       if (link.includes(",")) {
         let vale = link.split(",");
